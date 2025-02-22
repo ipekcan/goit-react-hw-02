@@ -1,35 +1,46 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import Description from './Components/Description/Description';
+import Options from './Components/Options/Options'
+import Feedback from './Components/Feedback/Feedback';
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [goodIncr, setGoodIncr] = useState(0);
+  const [neutrIncr, setNeutrIncr] = useState(0);
+  const [badIncr, setBadIncr] = useState(0);
+
+  const totalFeedBack = goodIncr + neutrIncr + badIncr;
+
+  const positive = Math.round((goodIncr / totalFeedBack) * 100);
+
+  function Reset() {
+      setGoodIncr(0);
+      setNeutrIncr(0);
+      setBadIncr(0);
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Description />
+      <Options 
+      goodIncr = {goodIncr} onIncreaseGood = {()=>setGoodIncr(goodIncr + 1)}
+      neutrIncr = {neutrIncr} onIncreaseNeutr = {()=>setNeutrIncr(neutrIncr + 1)}
+      badIncr = {badIncr} onIncreaseBad = {()=>setBadIncr(badIncr + 1)} 
+      onReset={Reset}
+      />
+       <Feedback
+        goodIncr = {goodIncr} 
+        neutrIncr = {neutrIncr} 
+        badIncr = {badIncr} 
+        totalFeedBack = {totalFeedBack}
+        positive = {positive}
+       />
     </>
   )
-}
+};
 
-export default App
+
+
+
+export default App;

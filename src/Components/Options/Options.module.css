@@ -1,0 +1,11 @@
+div.optionsDiv {
+    display: flex;
+}
+ul.optionsList {
+    display: flex;
+}
+ul.optionsList li {
+    display: flex;
+    align-items: center;
+    margin: 5px;
+}
