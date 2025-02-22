@@ -3,7 +3,7 @@ import stylesFB from "./Feedback.module.css"
 
 
 
-const Feedback = ({goodIncr, neutrIncr, badIncr, onIncreaseGood, onIncreaseNeutr, onIncreaseBad, totalFeedBack, positive}) => {
+const Feedback = ({goodIncr, neutrIncr, badIncr, totalFeedBack, positive}) => {
     if (totalFeedBack=== 0) {
         return (<h2 className={`${stylesFB.h2}`}>No feedback yet</h2>)
     };
